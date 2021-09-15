@@ -1,18 +1,33 @@
 import React from "react";
 import '../styles/App.css';
-import { Link } from "react-router-dom";
+import Nav from './Nav';
+import { useParams } from 'react-router-dom'
+
+const data = [
+    {
+        nombre: "Luca",
+        id: 1
+    },
+    {
+        nombre: "Luca2",
+        id: 2
+    }, {
+        nombre: "Tomate",
+        id: 3
+    },
+]
 
 function Perros() {
+    const { id1 } = useParams();
+    const perroEncontrado = data.find(perro => (`${perro.id}` === id1));
+    console.log(perroEncontrado)
     return (
         <React.Fragment>
-            <ul className="nav">
-                <li><Link to="/">Home <span>🏠</span></Link></li>
-                <li><Link to="/Gatos">Gatos <span>🐱</span></Link></li>
-                <li><Link to="/Perros">Perros <span>🐶</span></Link></li>
-            </ul>
+            <Nav />
             <h1>Tenemos</h1>
             <h2>Muchos guauguaus</h2>
             <p className="emojis">🐶🐶🐶🐶🐶🐶🐶🐶🐶</p>
+            <p>El perro es: {perroEncontrado.nombre}</p>
         </React.Fragment>
     )
 }
